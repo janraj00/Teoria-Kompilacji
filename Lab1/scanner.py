@@ -15,9 +15,10 @@ reserved = {
     'print': 'PRINT',
 }
 
-tokens = ['DOTADD', 'DOTSUB', 'DOTMUL', 'DOTDIV']
+tokens = ['DOTADD', 'DOTSUB', 'DOTMUL', 'DOTDIV', 'ADDASSIGN', 'SUBASSIGN',
+          'MULASSIGN', DIVASSIGN]
 
-literals = "+-*/()[]{}<>:,';"
+literals = "=+-*/()[]{}<>:,';"
 t_ignore = ' \t'
 t_COMMENT = r'\#*'
 
