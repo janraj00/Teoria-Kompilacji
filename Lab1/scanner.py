@@ -20,7 +20,6 @@ tokens = list(reserved.values()) + [
     'ADDASSIGN', 'SUBASSIGN', 'MULASSIGN', 'DIVASSIGN',
     'LESSEREQUAL', 'GREATEREQUAL', 'EQUAL', 'NOTEQUAL',
     'ID', 'INTNUM', 'FLOAT', 'STRING',
-    'COMMENT',
 ]
 
 t_ignore = ' \t'
