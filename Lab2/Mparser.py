@@ -75,11 +75,16 @@ def p_instruction_assign(p):
 
 def p_assignable(p):
     """ assignable : ID
-                    | matrix_element"""
+                    | matrix_element
+                    | vector_element"""
 
 
-def p_matrix_access(p):
-    """matrix_element : ID "[" INT "," INT "]" """
+def p_matrix_element(p):
+    """ matrix_element : ID "[" INT "," INT "]" """
+
+
+def p_vector_element(p):
+    """ vector_element: ID "[" INT "]" """
 
 
 def p_expr(p):
@@ -135,9 +140,24 @@ def p_matrix(p):
     """ '[' ']'"""
 
 
-def p_innerlist(p):
-    """innerlist : expr
-                | innerlist ',' expr"""
+def p_vectors(p):
+    """vectors : vectors ',' vector
+               | vector """
+
+
+def p_vector(p):
+    """vector : '[' variables ']' """
+
+
+def p_variables(p):
+    """variables : variables ',' variable
+                 | variable """
+
+
+def p_variable(p):
+    """variable : INT
+                | FLOAT
+                | assignable """
 
 
 parser = yacc.yacc()
