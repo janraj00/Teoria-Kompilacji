@@ -51,7 +51,7 @@ def p_instruction_return(p):
                         | RETURN expr"""
 
 
-def p_print_statement(p):
+def p_instruction_print(p):
     """ instruction_print : PRINT printables"""
 
 
@@ -65,29 +65,29 @@ def p_printable(p):
                 | STRING"""
 
 
-def p_assign_statement(p):
-    """assignstatement : assignable '=' expr
-                        | assignable ASSIGNPLUS expr
-                        | assignable ASSIGNMINUS expr
-                        | assignable ASSIGNTIMES expr
-                        | assignable ASSIGNDIVIDE expr"""
+def p_instruction_assign(p):
+    """ instruction_assign : assignable '=' expr
+                        | assignable ADDASSIGN expr
+                        | assignable SUBASSIGN expr
+                        | assignable MULASSIGN expr
+                        | assignable DIVASSIGN expr"""
 
 
 def p_assignable(p):
-    """assignable : ID
-                    | matrixaccess"""
+    """ assignable : ID
+                    | matrix_element"""
 
 
 def p_matrix_access(p):
-    """matrixaccess : ID '[' expr ',' expr ']'"""
+    """matrix_element : ID "[" INT "," INT "]" """
 
 
 def p_expr(p):
     """expr : assignable
-            | INTNUMBER
-            | FLOATNUMBER
+            | INT
+            | FLOAT
             | '[' matrixinitializer ']'
-            | specialmatrixword '(' expr ')'
+            | matrix_function '(' expr ')'
             | '-' expr %prec UNARY
             | expr "\'"
             | '(' expr ')'
@@ -108,8 +108,8 @@ def p_expr(p):
             """
 
 
-def p_special_matrix_word(p):
-    """specialmatrixword : ZEROS
+def p_matrix_function(p):
+    """ matrix_function : ZEROS
                             | ONES
                             | EYE"""
 
