@@ -38,8 +38,8 @@ t_GREATEREQUAL = r'>='
 t_EQUAL = r'=='
 t_NOTEQUAL = r'!='
 t_INTNUM = r'\d+'
-t_FLOAT = r'(\d+(\.\d*)?|\.\d+)([eE][-]?\d+)?'
-t_STRING = r'\"(\\.|[^"\\])*\"'
+t_FLOAT = r'(\d+\.\d*|\.\d+)([eE][-]?\d+)?'
+t_STRING = r'\"(\\.|[^"\\\n])*\"'
 
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
