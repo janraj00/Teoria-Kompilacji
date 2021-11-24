@@ -6,7 +6,7 @@ precedence = (
     ('nonassoc', 'IFX'),
     ('nonassoc', 'ELSE'),
     ('right', 'MULASSIGN', 'DIVASSIGN', 'SUBASSIGN', 'ADDASSIGN'),
-    ('nonassoc', '<', '>', 'GE', 'LE', 'EQ', 'NEQ'),
+    ('nonassoc', '<', '>', 'GEQ', 'LEQ', 'EQ', 'NEQ'),
     ('left', '+', '-'),
     ('left', 'DOTADD', 'DOTSUB'),
     ('left', '*', '/'),
@@ -39,7 +39,7 @@ def p_instruction(p):
                 | instruction_for
                 | instruction_while
                 | expr ';'
-                | instruction_returns';'
+                | instruction_return ';'
                 | instruction_assign ';'
                 | instruction_print ';'
                 | BREAK ';'
@@ -80,16 +80,16 @@ def p_assignable(p):
 
 
 def p_matrix_element(p):
-    """ matrix_element : ID "[" INT "," INT "]" """
+    """ matrix_element : ID "[" INTNUM "," INTNUM "]" """
 
 
 def p_vector_element(p):
-    """ vector_element: ID "[" INT "]" """
+    """ vector_element : ID "[" INTNUM "]" """
 
 
 def p_expr(p):
     """expr : assignable
-            | INT
+            | INTNUM
             | FLOAT
             | matrix
             | matrix_function "(" expr ")"
@@ -119,8 +119,8 @@ def p_matrix_function(p):
                             | EYE"""
 
 
-def p_if_instruction(p):
-    """ if_instruction : IF '(' expr ')' instructions %prec IFX
+def p_instruction_if(p):
+    """ instruction_if : IF '(' expr ')' instructions %prec IFX
                     | IF '(' expr ')' instructions ELSE instructions"""
 
 
@@ -137,7 +137,7 @@ def p_range(p):
 
 
 def p_matrix(p):
-    """ '[' ']'"""
+    """ matrix : '[' vectors ']'"""
 
 
 def p_vectors(p):
@@ -155,7 +155,7 @@ def p_variables(p):
 
 
 def p_variable(p):
-    """variable : INT
+    """variable : INTNUM
                 | FLOAT
                 | assignable """
 
