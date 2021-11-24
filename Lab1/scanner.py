@@ -18,7 +18,7 @@ literals = "=+-*/()[]{}<>:,';"
 tokens = list(reserved.values()) + [
     'DOTADD', 'DOTSUB', 'DOTMUL', 'DOTDIV', 
     'ADDASSIGN', 'SUBASSIGN', 'MULASSIGN', 'DIVASSIGN',
-    'LESSEREQUAL', 'GREATEREQUAL', 'EQUAL', 'NOTEQUAL',
+    'LEQ', 'GEQ', 'EQ', 'NEQ',
     'ID', 'INTNUM', 'FLOAT', 'STRING',
 ]
 
@@ -33,10 +33,10 @@ t_ADDASSIGN = r'\+='
 t_SUBASSIGN = r'-='
 t_MULASSIGN = r'\*='
 t_DIVASSIGN = r'/='
-t_LESSEREQUAL = r'<='
-t_GREATEREQUAL = r'>='
-t_EQUAL = r'=='
-t_NOTEQUAL = r'!='
+t_LEQ = r'<='
+t_GEQ = r'>='
+t_EQ = r'=='
+t_NEQ = r'!='
 t_INTNUM = r'\d+'
 t_FLOAT = r'(\d+\.\d*|\.\d+)([eE][-]?\d+)?'
 t_STRING = r'\"(\\.|[^"\\\n])*\"'
