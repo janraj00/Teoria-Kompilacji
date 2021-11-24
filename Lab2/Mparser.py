@@ -86,23 +86,23 @@ def p_expr(p):
     """expr : assignable
             | INT
             | FLOAT
-            | '[' matrixinitializer ']'
-            | matrix_function '(' expr ')'
-            | '-' expr %prec UNARY
+            | matrix
+            | matrix_function "(" expr ")"
+            | "-" expr %prec UMINUS
             | expr "\'"
-            | '(' expr ')'
+            | "(" expr ")"
             | expr '+' expr
             | expr '-' expr
             | expr '*' expr
             | expr '/' expr
-            | expr MPLUS expr
-            | expr MMINUS expr
-            | expr MTIMES expr
-            | expr MDIVIDE expr
-            | expr EQ expr
-            | expr NEQ expr
+            | expr DOTADD expr
+            | expr DOTSUB expr
+            | expr DOTMUL expr
+            | expr DOTDIV expr
             | expr '>' expr
             | expr '<' expr
+            | expr EQ expr
+            | expr NEQ expr
             | expr LEQ expr
             | expr GEQ expr
             """
@@ -114,31 +114,25 @@ def p_matrix_function(p):
                             | EYE"""
 
 
-def p_if_statement(p):
-    """ifstatement : IF '(' expr ')' morestatements %prec IFX
-                    | IF '(' expr ')' morestatements ELSE morestatements"""
+def p_if_instruction(p):
+    """ if_instruction : IF '(' expr ')' instructions %prec IFX
+                    | IF '(' expr ')' instructions ELSE instructions"""
 
 
-def p_loop(p):
-    """loop : forloop
-            | whileloop"""
+def p_instruction_for(p):
+    """ instruction_for : FOR ID '=' range instructions"""
 
 
-def p_for_loop(p):
-    """forloop : FOR ID '=' rangeoperator morestatements"""
+def p_instruction_while(p):
+    """ instruction_while : WHILE '(' expr ')' instructions"""
 
 
-def p_while_loop(p):
-    """whileloop : WHILE '(' expr ')' morestatements"""
+def p_range(p):
+    """range : expr ':' expr """
 
 
-def p_range_op(p):
-    """rangeoperator : expr ':' expr """
-
-
-def p_matrix_initializer(p):
-    """matrixinitializer : '[' innerlist  ']'
-                        | matrixinitializer ',' '[' innerlist ']' """
+def p_matrix(p):
+    """ '[' ']'"""
 
 
 def p_innerlist(p):
