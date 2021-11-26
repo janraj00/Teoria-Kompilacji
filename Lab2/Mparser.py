@@ -30,20 +30,19 @@ def p_start(p):
 
 def p_instructions(p):
     """ instructions : instruction
-                    |  instruction instructions
-                    | '{' instructions '}'"""
+                    |  instruction instructions"""
 
 
 def p_instruction(p):
     """ instruction : instruction_if
                 | instruction_for
                 | instruction_while
-                | expr ';'
                 | instruction_return ';'
                 | instruction_assign ';'
                 | instruction_print ';'
                 | BREAK ';'
-                | CONTINUE ';'"""
+                | CONTINUE ';'
+                | '{' instructions '}'"""
 
 
 def p_instruction_return(p):
