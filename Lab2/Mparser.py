@@ -30,7 +30,7 @@ def p_start(p):
 
 def p_instructions(p):
     """ instructions : instruction
-                    |  instruction instructions"""
+                    | instructions instruction"""
 
 
 def p_instruction(p):
@@ -119,16 +119,16 @@ def p_matrix_function(p):
 
 
 def p_instruction_if(p):
-    """ instruction_if : IF '(' expr ')' instructions %prec IFX
-                    | IF '(' expr ')' instructions ELSE instructions"""
+    """ instruction_if : IF '(' expr ')' instruction %prec IFX
+                    | IF '(' expr ')' instruction ELSE instruction"""
 
 
 def p_instruction_for(p):
-    """ instruction_for : FOR ID '=' range instructions"""
+    """ instruction_for : FOR ID '=' range instruction"""
 
 
 def p_instruction_while(p):
-    """ instruction_while : WHILE '(' expr ')' instructions"""
+    """ instruction_while : WHILE '(' expr ')' instruction"""
 
 
 def p_range(p):
