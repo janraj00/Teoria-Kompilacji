@@ -2,7 +2,6 @@ from __future__ import print_function
 import Lab3.AST as AST
 
 def addToClass(cls):
-
     def decorator(func):
         setattr(cls,func.__name__,func)
         return func
@@ -11,160 +10,149 @@ def addToClass(cls):
 class TreePrinter:
 
     @addToClass(AST.Node)
-    def printTree(self, indent):
+    def printTree(self, tabs):
         raise Exception("printTree not defined in class " + self.__class__.__name__)
 
-    @addToClass(AST.Node)
-    def indent(self, indent):
-        print("|   " * indent, end="")
-
-    @addToClass(AST.BinExpr)
-    def printTree(self, indent):
-        self.indent(indent)
+    @addToClass(AST.BinaryExpr)
+    def printTree(self, tabs):
+        self.print_tab(tabs)
         print(self.op)
-        self.left.printTree(indent + 1)
-        self.right.printTree(indent + 1)
-
-    @addToClass(AST.BinCond)
-    def printTree(self, indent):
-        self.indent(indent)
-        print(self.op)
-        self.left.printTree(indent + 1)
-        self.right.printTree(indent + 1)
+        self.left.printTree(tabs + 1)
+        self.right.printTree(tabs + 1)
 
     @addToClass(AST.Assign)
-    def printTree(self, indent):
-        self.indent(indent)
+    def printTree(self, tabs):
+        self.print_tab(tabs)
         print(self.op)
-        self.left.printTree(indent + 1)
-        self.right.printTree(indent + 1)
+        self.left.printTree(tabs + 1)
+        self.right.printTree(tabs + 1)
 
     @addToClass(AST.IfCond)
-    def printTree(self, indent):
-        self.indent(indent)
+    def printTree(self, tabs):
+        self.print_tab(tabs)
         print("IF")
-        self.cond.printTree(indent + 1)
-        self.if_body.printTree(indent + 1)
+        self.cond.printTree(tabs + 1)
+        self.if_body.printTree(tabs + 1)
         if self.else_body is not None:
-            self.indent(indent)
+            self.print_tab(tabs)
             print("ELSE")
-            self.else_body.printTree(indent + 1)
+            self.else_body.printTree(tabs + 1)
 
     @addToClass(AST.While)
-    def printTree(self, indent):
-        self.indent(indent)
+    def printTree(self, tabs):
+        self.print_tab(tabs)
         print("WHILE")
-        self.cond.printTree(indent + 1)
-        self.body.printTree(indent + 1)
+        self.cond.printTree(tabs + 1)
+        self.body.printTree(tabs + 1)
 
     @addToClass(AST.For)
-    def printTree(self, indent):
-        self.indent(indent)
+    def printTree(self, tabs):
+        self.print_tab(tabs)
         print("FOR")
-        self.begin.printTree(indent + 1)
-        self.end.printTree(indent + 1)
-        self.body.printTree(indent + 1)
+        self.begin.printTree(tabs + 1)
+        self.end.printTree(tabs + 1)
+        self.body.printTree(tabs + 1)
     
     @addToClass(AST.Break)
-    def printTree(self, indent=0):
-        self.indent(indent)
+    def printTree(self, tabs=0):
+        self.print_tab(tabs)
         print("BREAK")
 
     @addToClass(AST.Continue)
-    def printTree(self, indent=0):
-        self.indent(indent)
+    def printTree(self, tabs=0):
+        self.print_tab(tabs)
         print("CONTINUE")
     
     @addToClass(AST.Return)
-    def printTree(self, indent=0):
-        self.indent(indent)
+    def printTree(self, tabs=0):
+        self.print_tab(tabs)
         print("RETURN")
         if self.expr is not None:
-            self.expr.printTree(indent+1)
+            self.expr.printTree(tabs+1)
 
     @addToClass(AST.Print)
-    def printTree(self, indent=0):
-        self.indent(indent)
+    def printTree(self, tabs=0):
+        self.print_tab(tabs)
         print("PRINT")
         for expr in self.exprs:
-            expr.printTree(indent + 1)
+            expr.printTree(tabs + 1)
     
 
     @addToClass(AST.Transpose)
-    def printTree(self, indent=0):
-        self.indent(indent)
+    def printTree(self, tabs=0):
+        self.print_tab(tabs)
         print("TRANSPOSE")
-        self.arg.printTree(indent + 1)
+        self.arg.printTree(tabs + 1)
 
-    @addToClass(AST.Fun)
-    def printTree(self, indent=0):
-        self.indent(indent)
+    @addToClass(AST.Function)
+    def printTree(self, tabs=0):
+        self.print_tab(tabs)
         print(self.fun)
-        self.arg.printTree(indent + 1)
+        self.arg.printTree(tabs + 1)
     
 
     @addToClass(AST.Matrix)
-    def printTree(self, indent):
-        self.indent(indent)
+    def printTree(self, tabs):
+        self.print_tab(tabs)
         print("VECTOR")
         for row in self.matrix:
-            self.indent(indent + 1)
+            self.print_tab(tabs + 1)
             print("VECTOR")
             for expr in row:
-                self.indent(indent + 2)
+                self.print_tab(tabs + 2)
                 print(expr)
 
     
     @addToClass(AST.Uminus)
-    def printTree(self, indent=0):
-        self.indent(indent)
+    def printTree(self, tabs=0):
+        self.print_tab(tabs)
         print("-")
-        self.arg.printTree(indent + 1)
+        self.arg.printTree(tabs + 1)
 
     @addToClass(AST.ID)
-    def printTree(self, indent):
-        self.indent(indent)
+    def printTree(self, tabs):
+        self.print_tab(tabs)
         print(self.id)
         
     @addToClass(AST.Assignable)
-    def printTree(self, indent):
-        self.id.printTree(indent)
+    def printTree(self, tabs):
+        self.id.printTree(tabs)
         if self.index is not None:
-            self.indent(indent)
+            self.print_tab(tabs)
             print("REF")
             for expr in self.index:
-                self.indent(indent + 1)
+                self.print_tab(tabs + 1)
                 print(expr)
 
     @addToClass(AST.String)
-    def printTree(self, indent=0):
-        self.indent(indent)
+    def printTree(self, tabs=0):
+        self.print_tab(tabs)
         print("STRING")
-        self.indent(indent + 1)
+        self.print_tab(tabs + 1)
         print(self.string)
     
     @addToClass(AST.Instructions)
-    def printTree(self, indent):
-        for stmt in self.instructions:
-            stmt.printTree(indent)
+    def printTree(self, tabs):
+        for instruction in self.instructions:
+            instruction.printTree(tabs)
 
     @addToClass(AST.IntNum)
-    def printTree(self, indent):
-        self.indent(indent)
+    def printTree(self, tabs):
+        self.print_tab(tabs)
         print(self.value)
     
     @addToClass(AST.FloatNum)
-    def printTree(self, indent=0):
-        self.indent(indent)
+    def printTree(self, tabs=0):
+        self.print_tab(tabs)
         print(self.value)
     
     @addToClass(AST.Instructions)
-    def printTree(self, indent):
-        for stmt in self.instructions:
-            stmt.printTree(0)
+    def printTree(self, tabs):
+        for instruction in self.instructions:
+            instruction.printTree(0)
 
     @addToClass(AST.Error)
-    def printTree(self, indent=0):
+    def printTree(self, tabs=0):
         pass
 
 

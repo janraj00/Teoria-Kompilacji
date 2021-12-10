@@ -1,14 +1,9 @@
 class Node(object):
-    pass
+    def print_tab(self, indent):
+        print("|   " * indent, end="")
 
-class BinExpr(Node):
+class BinaryExpr(Node):
     def __init__(self, left, op, right):
-        self.op = op
-        self.left = left
-        self.right = right
-
-class BinCond(Node):
-    def __init__(self, op, left, right):
         self.op = op
         self.left = left
         self.right = right
@@ -61,10 +56,10 @@ class Uminus(Node):
     def __init__(self, arg):
         self.arg = arg
 
-class Fun(Node):
-    def __init__(self, fun, arg):
-        self.fun = fun
-        self.arg = arg
+class Function(Node):
+    def __init__(self, function, argument):
+        self.function = function
+        self.arg = argument
 
 class Matrix(Node):
     def __init__(self, matrix):
@@ -102,9 +97,6 @@ class Start(Node):
 class Printable(Node):
     def __init__(self, printables):
         self.printables = printables
-# ...
-# fill out missing classes
-# ...
 
 class Error(Node):
     def __init__(self):

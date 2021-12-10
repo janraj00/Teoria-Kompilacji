@@ -125,7 +125,7 @@ def p_expr_nested(p):
 
 def p_expr_matrix_fun(p):
     """expr : matrix_function '(' expr ')'"""
-    p[0] = AST.Fun(p[1], p[3])
+    p[0] = AST.Function(p[1], p[3])
 
 def p_expr_literal(p):
     """expr : assignable
@@ -161,7 +161,7 @@ def p_binary_expression(p):
             | expr LEQ expr
             | expr GEQ expr
     """
-    p[0] = AST.BinExpr(p[1], p[2], p[3])
+    p[0] = AST.BinaryExpr(p[1], p[2], p[3])
 
 
 
