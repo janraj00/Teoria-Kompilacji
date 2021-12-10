@@ -8,13 +8,13 @@ class BinaryExpr(Node):
         self.left = left
         self.right = right
 
-class Assign(Node):
+class AssignOperation(Node):
     def __init__(self, op, left, right):
         self.op = op
         self.left = left
         self.right = right
 
-class IfCond(Node):
+class IfCondition(Node):
     def __init__(self, cond, if_body, else_body=None):
         self.cond = cond
         self.if_body = if_body

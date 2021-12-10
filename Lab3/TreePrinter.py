@@ -20,14 +20,14 @@ class TreePrinter:
         self.left.printTree(tabs + 1)
         self.right.printTree(tabs + 1)
 
-    @addToClass(AST.Assign)
+    @addToClass(AST.AssignOperation)
     def printTree(self, tabs):
         self.print_tab(tabs)
         print(self.op)
         self.left.printTree(tabs + 1)
         self.right.printTree(tabs + 1)
 
-    @addToClass(AST.IfCond)
+    @addToClass(AST.IfCondition)
     def printTree(self, tabs):
         self.print_tab(tabs)
         print("IF")

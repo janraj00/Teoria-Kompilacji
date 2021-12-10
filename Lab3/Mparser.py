@@ -92,7 +92,7 @@ def p_instruction_assign(p):
                         | assignable SUBASSIGN expr
                         | assignable MULASSIGN expr
                         | assignable DIVASSIGN expr"""
-    p[0] = AST.Assign(p[2], p[1], p[3])
+    p[0] = AST.AssignOperation(p[2], p[1], p[3])
 
 def p_id(p):
     """id : ID"""
@@ -175,7 +175,7 @@ def p_matrix_function(p):
 def p_instruction_if(p):
     """ instruction_if : IF '(' expr ')' instruction %prec IFX
                     | IF '(' expr ')' instruction ELSE instruction"""
-    p[0] = AST.IfCond(p[3], p[5], p[7] if len(p) > 7 else None)
+    p[0] = AST.IfCondition(p[3], p[5], p[7] if len(p) > 7 else None)
 
 
 def p_instruction_for(p):
