@@ -142,7 +142,7 @@ def p_expr_int(p):
 
 def p_expr_float(p):
     """expr : FLOAT"""
-    p[0] = AST.FloatNum(p[1])
+    p[0] = AST.Float(p[1])
 
     
 def p_binary_expression(p):

@@ -86,7 +86,7 @@ class IntNum(Node):
     def __init__(self, value):
         self.value = value
 
-class FloatNum(Node):
+class Float(Node):
     def __init__(self, value):
         self.value = value
 

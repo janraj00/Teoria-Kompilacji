@@ -141,7 +141,7 @@ class TreePrinter:
         self.print_tab(tabs)
         print(self.value)
     
-    @addToClass(AST.FloatNum)
+    @addToClass(AST.Float)
     def printTree(self, tabs=0):
         self.print_tab(tabs)
         print(self.value)
