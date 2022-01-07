@@ -89,11 +89,6 @@ class NodeVisitor(object):
                 elif isinstance(child, AST.Node):
                     self.visit(child)
 
-    # simpler version of generic_visit, not so general
-    # def generic_visit(self, node):
-    #    for child in node.children:
-    #        self.visit(child)
-
 
 class Error:
     def __init__(self, line_number, error_message):
@@ -275,8 +270,8 @@ class TypeChecker(NodeVisitor):
     def visit_PrintVals(self, node):
         self.visit(node.vals)
 
-
-    def visit_String(self, node):
+    @staticmethod
+    def visit_String(node):
         return "string"
 
     def visit_Variable(self, node):

@@ -6,7 +6,10 @@ class Node(object):
 
 class Instructions(Node):
     def __init__(self, new_instruction, instructions=None):
-        self.instructions = instructions.instructions if instructions else []
+        if instructions is not None:
+            self.instructions = instructions.instructions
+        else:
+            self.instructions = []
         self.instructions.append(new_instruction)
 
 
@@ -82,7 +85,10 @@ class Print(Node):
 
 class Matrix(Node):
     def __init__(self, new_vector,line, matrix=None):
-        self.matrix = matrix.matrix.copy() if matrix else []
+        if matrix is not None:
+            self.matrix = matrix.matrix.copy()
+        else:
+            self.matrix = []    
         self.matrix.append(new_vector)
         self.line = line
 
