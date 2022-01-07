@@ -11,10 +11,6 @@ ttype['+']["int"]["int"] = "int"
 ttype['-']["int"]["int"] = "int"
 ttype['*']["int"]["int"] = "int"
 ttype['/']["int"]["int"] = "int"
-ttype[".+"]["int"]["int"] = "int"
-ttype[".-"]["int"]["int"] = "int"
-ttype[".*"]["int"]["int"] = "int"
-ttype["./"]["int"]["int"] = "int"
 ttype['<']["int"]["int"] = "logic"
 ttype['>']["int"]["int"] = "logic"
 ttype["<="]["int"]["int"] = "logic"
@@ -26,10 +22,6 @@ ttype['+']["int"]["float"] = "float"
 ttype['-']["int"]["float"] = "float"
 ttype['*']["int"]["float"] = "float"
 ttype['/']["int"]["float"] = "float"
-ttype[".+"]["int"]["float"] = "float"
-ttype[".-"]["int"]["float"] = "float"
-ttype[".*"]["int"]["float"] = "float"
-ttype["./"]["int"]["float"] = "float"
 ttype['<']["int"]["float"] = "logic"
 ttype['>']["int"]["float"] = "logic"
 ttype["<="]["int"]["float"] = "logic"
@@ -41,10 +33,6 @@ ttype['+']["float"]["int"] = "float"
 ttype['-']["float"]["int"] = "float"
 ttype['*']["float"]["int"] = "float"
 ttype['/']["float"]["int"] = "float"
-ttype[".+"]["float"]["int"] = "float"
-ttype[".-"]["float"]["int"] = "float"
-ttype[".*"]["float"]["int"] = "float"
-ttype["./"]["float"]["int"] = "float"
 ttype['<']["float"]["int"] = "logic"
 ttype['>']["float"]["int"] = "logic"
 ttype["<="]["float"]["int"] = "logic"
@@ -56,10 +44,6 @@ ttype['+']["float"]["float"] = "float"
 ttype['-']["float"]["float"] = "float"
 ttype['*']["float"]["float"] = "float"
 ttype['/']["float"]["float"] = "float"
-ttype[".+"]["float"]["float"] = "float"
-ttype[".-"]["float"]["float"] = "float"
-ttype[".*"]["float"]["float"] = "float"
-ttype["./"]["float"]["float"] = "float"
 ttype['<']["float"]["float"] = "logic"
 ttype['>']["float"]["float"] = "logic"
 ttype["<="]["float"]["float"] = "logic"
@@ -67,6 +51,44 @@ ttype[">="]["float"]["float"] = "logic"
 ttype["=="]["float"]["float"] = "logic"
 ttype["!="]["float"]["float"] = "logic"
 
+ttype['+']['vector']['vector'] = 'vector'
+ttype['-']['vector']['vector'] = 'vector'
+ttype['*']['vector']['vector'] = 'vector'
+ttype['/']['vector']['vector'] = 'vector'
+ttype['+=']['vector']['vector'] = 'vector'
+ttype['-=']['vector']['vector'] = 'vector'
+ttype['*=']['vector']['vector'] = 'vector'
+ttype['/=']['vector']['vector'] = 'vector'
+
+ttype['.+']['vector']['vector'] = 'vector'
+ttype['.+']['vector']['int'] = 'vector'
+ttype['.+']['vector']['float'] = 'vector'
+ttype['.+']['int']['vector'] = 'vector'
+ttype['.+']['float']['vector'] = 'vector'
+
+ttype['.-']['vector']['vector'] = 'vector'
+ttype['.-']['vector']['int'] = 'vector'
+ttype['.-']['vector']['float'] = 'vector'
+ttype['.-']['int']['vector'] = 'vector'
+ttype['.-']['float']['vector'] = 'vector'
+
+ttype['.*']['vector']['vector'] = 'vector'
+ttype['.*']['vector']['int'] = 'vector'
+ttype['.*']['vector']['float'] = 'vector'
+ttype['.*']['int']['vector'] = 'vector'
+ttype['.*']['float']['vector'] = 'vector'
+
+ttype['./']['vector']['vector'] = 'vector'
+ttype['./']['vector']['int'] = 'vector'
+ttype['./']['vector']['float'] = 'vector'
+ttype['./']['int']['vector'] = 'vector'
+ttype['./']['float']['vector'] = 'vector'
+
+ttype['\'']['vector'][None] = 'vector'
+ttype['-']['vector'][None] = 'vector'
+ttype['-']['int'][None] = 'int'
+ttype['-']['float'][None] = 'float'
+ttype['+']['string']['string'] = 'string'
 
 
 
